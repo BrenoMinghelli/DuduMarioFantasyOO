@@ -3,7 +3,7 @@ package Teste;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CombateSlime extends combate{
+public class CombateSlime extends Combate{
     
     ArrayList <Inimigo> inimigos=new ArrayList<Inimigo>();
     //ArrayList<Personagem>personagens=new ArrayList<Personagem>();

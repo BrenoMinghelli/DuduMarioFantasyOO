@@ -2,7 +2,7 @@ package Teste;
 
 import java.util.ArrayList;
 
-abstract class combate { //para nao ficar repetindo dentro dos encontros especificos,
+abstract class Combate { //para nao ficar repetindo dentro dos encontros especificos,
     /*
     public void combate(){
         int saida=0;
