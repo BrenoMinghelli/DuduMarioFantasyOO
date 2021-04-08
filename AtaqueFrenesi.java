@@ -15,14 +15,14 @@ public class AtaqueFrenesi extends Ataque{
     int alvo=0;
     
     @Override
-    public double atacar(int lvl, int atk, ArrayList<Inimigo> inimigos,int indice){
+    public double atacar(int lvl, int atk, ArrayList inimigos,int indice){
         this.setMultiplicador(0.6);
         
-        double dano=((this.multiplicador+(this.frenesi*0.6))*atk*100)/(inimigos.get(indice).getDef()+100);
-        System.out.print(inimigos.get(indice).getNome()+", causando "+dano+" de dano.\n");
-        inimigos.get(indice).tomaDano(dano);
+        double dano=((this.multiplicador+(this.frenesi*0.6))*atk*100)/(((Inimigo)inimigos.get(indice)).getDef()+100);
+        System.out.print(((Inimigo)inimigos.get(indice)).getNome()+", causando "+dano+" de dano.\n");
+        ((Inimigo)inimigos.get(indice)).tomaDano(dano);
         
-        if(inimigos.get(indice).isDead()){
+        if(((Inimigo)inimigos.get(indice)).isDead()){
             this.frenesi=0;
             this.alvo=0;
             return dano;

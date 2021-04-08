@@ -52,6 +52,35 @@ public class Personagem {
         return dano;
     }
     
+    public void imprimir(){
+        System.out.print("O heroi "+this.nome+" eh um Personagem"+" de nivel "+this.lvl+"\n"+
+                "Stats: "+
+                "\nAtk "+this.atk+
+                "\nHP atual "+this.hpA+
+                "\nDef "+this.def+"\n\n");
+    }
+    
+    public void tomaDano(double dano){
+        if(this.hpA>dano)this.hpA-=dano;
+        else {
+            this.hpA=0;
+            System.out.print("O "+this.nome+" morreu.\n");
+        }
+    }
+    
+    public boolean isDead(){
+        if(hpA==0)return true;
+        return false;
+    }
+    
+    public int getDef(){
+        return this.def;
+    }
+    
+    public String getNome(){
+        return nome;
+    }
+    
     /*
     //Magia
     public double magia(Inimigo inimigo){

@@ -19,7 +19,7 @@ public class Ataque {
         this.multiplicador=multi;
     }
     
-    public double atacar(int lvl, int atk, ArrayList<Inimigo> inimigos,int indice){
+    public double atacar(int lvl, int atk, ArrayList alvos,int indice){
         double dano=0;
         System.out.print("\n");
         return dano;
