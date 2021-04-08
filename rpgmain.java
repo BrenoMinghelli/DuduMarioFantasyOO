@@ -1,9 +1,25 @@
+package Teste;
+
+import java.util.ArrayList;
 import java.util.Scanner;
+
 public class rpgmain {
     public static void main(String args[]){
+        
+        ArrayList <Personagem> personagens=new ArrayList<Personagem>();
         Scanner teclado = new Scanner(System.in);
-        fighter dudumario = new fighter("Dudu Mario");  //inicializando cria os personagens, posteriormente pode colocar essas infos num arquivo
-        dudumario.getstats();
+        Guerreiro guerreiro = new Guerreiro("Dudu Mario",1);  //inicializando cria os personagens, posteriormente pode colocar essas infos num arquivo
+        
+        personagens.add(guerreiro);
+        
+        for(Personagem temp:personagens){
+            temp.imprimir();
+        }        
+        
+        CombateSlime combateTeste=new CombateSlime();
+        combateTeste.lutar(personagens);
+        
+        /*
         while (true){
             System.out.println("1.Combate\n2.Break");  //feito para testes
             int choice = teclado.nextInt();
@@ -16,6 +32,7 @@ public class rpgmain {
                 teclado.close();
                 break;
             }
-        }
+        }*/
+        
     }
 }
