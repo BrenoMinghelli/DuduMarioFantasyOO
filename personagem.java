@@ -25,8 +25,8 @@ public abstract class personagem {
 
     public void setHP(int dano){  //reduz o hp do player com a entrada de dano, ja fatorando a redução pela def
         dano=dano-def;
-        if(dano<0){
-            dano=0;
+        if(dano<=0){
+            dano=1;  //min 1 de dano causado
         }
         hpA=hpA-dano;
     }
