@@ -39,4 +39,8 @@ abstract class combate {
             //acerta em todos
         }
     }
+    
+    //public static void mecanicadecura(ArrayList<personagem>){
+    
+    }
 }
