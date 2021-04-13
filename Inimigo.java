@@ -2,61 +2,92 @@ package Alpha02;
 
 import java.util.ArrayList;
 
+/*Fafnir-
+    Mexi muito pouco nessa classe, apenas adicionei get/set e alguns metodos
+que copiei de personagem como ataqueBasico apenas para testes.
+*/
 abstract public class inimigo {
-    protected String nome;
-    protected int hp;
-    protected int hpA;
-    protected int atk;
+    private String nome;
+    private int hp;
+    private int hpA;
+    private int atk;
+    private int def=0;
     
-    public inimigo(String nome, int hp, int atk){
+    public inimigo(String nome, int hp, int atk,int def){
         this.nome=nome;
         this.hp=hp;
         this.hpA=hp;
         this.atk=atk;
+        this.def=def;
     }
     
     public int atacar(ArrayList<personagem> personagens){
         int qualAtaque=1;//ToDO random
         int alvo=0;//ToDo random lembrar de re-rolar caso personagem.taMorto()
-        if(((guerreiro)personagens.get(0)).isTaunting())alvo=0; //caso Taunt
-        if(qualAtaque==1)return this.ataqueBasico(personagens.get(alvo));
-        /*
-        else if(qualAtaque==2)return this.ataqueBash(inimigos.get(qualInimigo));
-        else if(qualAtaque==3)return this.ataqueCleave(inimigos);
-        else if(qualAtaque==4)return this.ataqueTaunt(inimigos);
-        */
-        return -1;
+        switch (qualAtaque) {
+            case 1 -> {
+                return this.ataqueBasico((personagem)personagens.get(alvo));
+            }/*
+            case 2 ->//implementar os outros ataques do inimigo
+                return this.ataqueEmArea(personagens);
+            }*/
+            default -> { System.out.print("Ataque Invalido\n");return 0;
+            }
+        }
     }
     
-    //public int atacar(ArrayList<personagem> personagens){//ataca todos}
+    public int atacar(personagem personagem){
+        int qualAtaque=1;//ToDO random
+        switch (qualAtaque) {
+            case 1 -> {
+                return this.ataqueBasico(personagem);
+            }/*
+            case 2 ->//implementar os outros ataques do inimigo
+                return this.ataqueEmArea(personagens);
+            }*/
+            default -> { System.out.print("Ataque Invalido\n");return 0;
+            }
+        }
+    }
     
     public int ataqueBasico(personagem personagem){
         int dano;
         dano=randomroll.danoroll(5);
-        dano+=(this.atk);
+        dano+=(this.getAtk());
         personagem.tomaDano(dano);
         return dano;
     }
     
     public void tomaDano(int dano){  //reduz o hp do player com a entrada de dano, ja fatorando a redução pela def
+        dano-=this.getDef();
         if(dano<=0){
             dano=1;  //min 1 de dano causado
         }
-        hpA-=dano;
-        System.out.print("O "+this.nome+" toma "+dano+" de dano\n");
+        this.setHpA(this.getHpA() - dano);
+        System.out.print("O "+this.getNome()+" toma "+dano+" de dano\n");
     }
     
     public boolean taMorto(){
-        if(this.hpA>0)return false;
+        if(this.getHpA()>0)return false;
         else {
-            System.out.print("O "+this.nome+" morreu\n");
+            System.out.print("O "+this.getNome()+" morreu\n");
             return true;
         }
     }
-    public int getHP(){
-        return hpA;
-    }
+    
     public void printHP(){
-        System.out.println(hpA+"/"+hp);
+        System.out.println(getHpA()+"/"+getHp());
     }
+    
+    public int getHP(){return getHpA();}
+    public String getNome() {return nome;}
+    public void setNome(String nome) {this.nome = nome;}
+    public int getHp() {return hp;}
+    public void setHp(int hp) {this.hp = hp;}
+    public int getHpA() {return hpA;}
+    public void setHpA(int hpA) {this.hpA = hpA;}
+    public int getAtk() {return atk;}
+    public void setAtk(int atk) {this.atk = atk;}
+    public int getDef() {return def;}
+    public void setDef(int def) {this.def = def;}
 }

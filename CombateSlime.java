@@ -1,8 +1,5 @@
 package Alpha02;
 
-import java.util.ArrayList;
-
-
 public class combateSlime extends combate {
     
     public combateSlime(){
