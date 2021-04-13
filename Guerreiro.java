@@ -29,11 +29,22 @@ public class guerreiro extends personagem{
     
     @Override
     public int atacar(int qualAtaque, ArrayList<inimigo> inimigos, int qualInimigo){
-        if(qualAtaque==1)return this.ataqueBasico(inimigos.get(qualInimigo));
-        else if(qualAtaque==2)return this.ataqueBash(inimigos.get(qualInimigo));
-        else if(qualAtaque==3)return this.ataqueCleave(inimigos);
-        else if(qualAtaque==4)return this.ataqueTaunt(inimigos);
-        return -1;
+        switch (qualAtaque) {
+            case 1 -> {
+                return this.ataqueBasico(inimigos.get(qualInimigo));
+            }
+            case 2 -> {
+                return this.ataqueBash(inimigos.get(qualInimigo));
+            }
+            case 3 -> {
+                return this.ataqueCleave(inimigos);
+            }
+            case 4 -> {
+                return this.ataqueTaunt(inimigos);
+            }
+            default -> { System.out.print("Ataque Invalido\n");return 0;
+            }
+        }
     }
     
     public int ataqueBasico(inimigo inimigo){
