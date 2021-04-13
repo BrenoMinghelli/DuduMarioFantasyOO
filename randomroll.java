@@ -1,0 +1,11 @@
+package Alpha02;
+
+import java.util.Random;
+
+public class randomroll {
+    public static int danoroll(int max){
+        Random r = new Random();
+        int ro=r.nextInt(max);
+        return ro;
+    }
+}

@@ -1,45 +1,103 @@
-package Teste;
+package Alpha02;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-/*Ideia
-Adicao dos ataques possiveis, status base, e modificacoes em ataque para se adequar
-a mecanicas (frenesi por exemplo).
- */
-public class Guerreiro extends Personagem{
+/*
+Bash(5) --> Perde 10% do hp para dar mais dano (2*atk e roll de 7 pra 10)
+Cleave(10) --> Ataque AOE, pegando todos os inimigos, usa o BasicHit pro dano 
+Taunt(15)--> Aumenta a def e obriga os inimigos a atacar ele (alguma mecanica de cooldown)
+obs.O taunt poderia ser passado pelo ArrayList controle q eu tava usando, e if(taunt==1) entao nao teria um rand pra alvo
+
+*/
+
+public class guerreiro extends personagem{
     
-    public Guerreiro(String nome, int lvl){
-        super(nome,lvl,100,10,10);
-        AtaqueCorte corte=new AtaqueCorte();AtaqueGiratorio giratorio=new AtaqueGiratorio();
-        AtaquePerfurante perfurante=new AtaquePerfurante();AtaqueFrenesi frenesi=new AtaqueFrenesi();
-        this.ataques.add(corte);this.ataques.add(giratorio); 
-        this.ataques.add(perfurante); this.ataques.add(frenesi); 
+    public boolean taunt=false;
+    
+    public guerreiro(String nome){
+        super(nome,1,20,7,5);
     }
     
     @Override
-    public double atacar(ArrayList<Inimigo> inimigos, int indice){
-        
-        //trata um Ataque como um AtaqueFrenesi para pegar seus atributos, mas 
-        //so funciona pois sei que frenesi esta no indice 3(4)
-        if(((AtaqueFrenesi)this.ataques.get(3)).frenesi>0){ //excecao para o frenesi
-            System.out.print("O heroi "+this.nome+" esta em Frenesi e atacou o ");
-            double dano=this.ataques.get(3).atacar(this.lvl,this.atk,inimigos,((AtaqueFrenesi)this.ataques.get(3)).alvo);
-            return dano;
-        }
-        
-        //demais ataques
-        Scanner scanner=new Scanner(System.in);
-        System.out.print("Qual inimigo deseja atacar?\n");
-        int entrada=scanner.nextInt()-1;
-        if(inimigos.get(entrada).isDead()){
-            System.out.print("O inimigo ja esta morto.\n");
-            double dano=0;
-            return dano;
-        }
-        System.out.print("O heroi "+this.nome+" atacou o ");
-        double dano=this.ataques.get(indice).atacar(this.lvl,this.atk,inimigos,entrada);
+    public void levelup(){  //mecanica de lvl up, quando acumular X de xp, implementado dps
+        this.lvl+=1;
+        this.hp+=5;
+        this.atk+=3;
+        this.def+=2;
+        this.hpA+=5;
+    }
+    
+    @Override
+    public int atacar(int qualAtaque, ArrayList<inimigo> inimigos, int qualInimigo){
+        if(qualAtaque==1)return this.ataqueBasico(inimigos.get(qualInimigo));
+        else if(qualAtaque==2)return this.ataqueBash(inimigos.get(qualInimigo));
+        else if(qualAtaque==3)return this.ataqueCleave(inimigos);
+        else if(qualAtaque==4)return this.ataqueTaunt(inimigos);
+        return -1;
+    }
+    
+    public int ataqueBasico(inimigo inimigo){
+        int dano;
+        dano=randomroll.danoroll(7);
+        dano+=(this.atk);
+        inimigo.tomaDano(dano);
         return dano;
     }
+    
+    public int ataqueBash(inimigo inimigo){
+        int dano;
+        dano=randomroll.danoroll(10);
+        dano+=(2*this.atk);
+        this.hpA-=(int)(this.hpA*0.1);
+        inimigo.tomaDano(dano);
+        
+        return dano;
+    }
+    
+    public int ataqueCleave(ArrayList<inimigo> inimigos){
+        int dano=0;
+        for(int i=0;i<inimigos.size();i++){
+            dano+=this.ataqueBasico(inimigos.get(i));
+        }
+        return dano;
+    }
+    
+    public int ataqueTaunt(ArrayList<inimigo> inimigos){
+        this.taunt=true;
+        this.def+=5; //colocar o numero de defesa
+        return 0;
+    }
+    
+    public void showActions(){  //mostra as ações possiveis ao jogador
+        System.out.println("Turno Guerreiro");
+        System.out.println("1.Ataque basico");
+        if(lvl>=5){
+            System.out.println("2.Cleave");
+        }
+        if(lvl>=10){
+            System.out.println("3.Spin");
+        }
+    }
+    
+    public boolean isTaunting(){
+        return this.taunt;
+    }
+    
+    public void fimTaunt(){
+        if(this.taunt){
+            this.taunt=false;
+            this.def-=5; //colocar o numero de defesa
+        }
+    }
+    
+    /*teste
+    public static void main(String args[]){
+        
+        guerreiro guerreiroTeste=new guerreiro("Teste");
+        guerreiroTeste.levelup();guerreiroTeste.levelup();guerreiroTeste.levelup();guerreiroTeste.levelup();
+        guerreiroTeste.imprimeHP();
+        guerreiroTeste.atacar(2);
+        guerreiroTeste.imprimeHP();
+    }*/
     
 }

@@ -1,0 +1,33 @@
+1.Ideias sobre o jogo:
+
+A party seria composta de 4 personagens
+Fighter: Golpes fisicos sem magia, como custo para atks mais fortes gastaria vida, mais hp e defesa q o resto da party (talvez mais chance de ser acertado)
+Rogue: Tbm sem magias, soq mais fragil e causando mais dano, poderia usar a mesma mecanica q o fighter de perder vida, soq gastando mais vida pra muito mais dano (risco X recompensa)
+White Mage: Healer do grupo, usaria algum sistema de barra de magia (10/10mp kda magia gasta X de mp), Teria mais vida e defesa q o rogue, mas menos que o fighter
+Black Mage: Mago de dano, usaria o sistema de barra de magia, seria o mais fragil do grupo, mas como o rogue poderia usar o recurso para mais dano
+
+O jogo seria divido em 5 areas; uma cidade aonde começaria e os personagens poderiam healar, e 3 outras areas q eles deveriam cruzar pra chegar no boss, que estaria na quinta area 
+e seria o unico combate dela
+
+2.Codigo
+A main existe para fazer o "GAMESTATE" funcionar
+no 0 seria o menu principal, quando abre o jogo
+no 1 o jogo em si
+poderiam ter mais GAMESTATES para algum menu de customização, um de credito ou algo do tipo
+
+Caso seja possivel criar os "objetos globais" eles seriam iniciados na main, se não for possivel, seriam no "game.cenario()"
+
+O start é o menu inicial, ele retorna o valor do GAMESTATE escolhido para a main
+
+O Game é aonde o jogador poderia se movimentar pelo mapa, conversar com npcs, utilizar itens consumiveis no menu de pausa etc
+Enquanto ele se movimentar pelo jogo, se estiver numa area aonde pode ocorrer encontros aleatorios, a kda passo pode ser q um combate
+aconteça, e quando isso ocorre o tem o combatgenerator().
+
+No combate generator, ele checa qual area o jogador esta, e randomiza um encontro de acordo, levanto ao combate em si
+
+Ai entraria a parte de kda combate, que teriam atributos comuns a uma abstract combate, mas kda subclasse teriam seus inimigos ja designados
+
+
+Metodo para encontros aleatorios --> Eu considerei que nao faria sentido, msm com uma chance minima, ocorrer um encontro no passo seguinte ao final de um,
+                                     portanto o random começa com random.nextInt(5), onde é impossivel achar o 5, mas a kda bloco andado, esse valor entro do
+                                      () vai aumentando, ate ficar bem provavel que um encontro aconteça, que entao reseta o contador novamente
