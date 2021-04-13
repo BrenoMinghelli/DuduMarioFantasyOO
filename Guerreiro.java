@@ -89,15 +89,4 @@ public class guerreiro extends personagem{
             this.def-=5; //colocar o numero de defesa
         }
     }
-    
-    /*teste
-    public static void main(String args[]){
-        
-        guerreiro guerreiroTeste=new guerreiro("Teste");
-        guerreiroTeste.levelup();guerreiroTeste.levelup();guerreiroTeste.levelup();guerreiroTeste.levelup();
-        guerreiroTeste.imprimeHP();
-        guerreiroTeste.atacar(2);
-        guerreiroTeste.imprimeHP();
-    }*/
-    
 }
