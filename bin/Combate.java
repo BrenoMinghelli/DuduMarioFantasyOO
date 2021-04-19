@@ -74,11 +74,11 @@ abstract class Combate {
             }if(this.inimigos.isEmpty())break;
             
             System.out.print("- - - Turno dos inimigos - - -\n");
-            for(Inimigo temp2:inimigos){
-                System.out.print("Vez do "+temp2.getNome()+"\n");
+            for(Inimigo inimigoTemp:inimigos){
+                System.out.print("Vez do "+inimigoTemp.getNome()+"\n");
                 
-                if(((Guerreiro)personagens.get(0)).isTaunting() & ((Guerreiro)personagens.get(0)).taMorto()==false)temp2.atacar(personagens.get(0));//mecanica Taunt do Guerreiro
-                else temp2.atacar(personagens); //random, porem tem que checar personagens.isDead para funcionar
+                if(((Guerreiro)personagens.get(0)).isTaunting() & ((Guerreiro)personagens.get(0)).taMorto()==false)inimigoTemp.atacar(personagens.get(0));//mecanica Taunt do Guerreiro
+                else inimigoTemp.atacar(personagens); //random, porem tem que checar personagens.isDead para funcionar
                 
                 for(int i=0; i<4;i++){//checa quantos personagens estao mortos
                     if(personagens.get(i).taMorto()){

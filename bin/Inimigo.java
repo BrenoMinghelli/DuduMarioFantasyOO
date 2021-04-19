@@ -6,7 +6,7 @@ import java.util.ArrayList;
     Mexi muito pouco nessa classe, apenas adicionei get/set e alguns metodos
 que copiei de Personagem como ataqueBasico apenas para testes.
 */
-abstract public class Inimigo {
+public abstract class Inimigo {
     private String nome;
     private int hp;
     private int hpA;

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 Ideia:
     Tentei padronizar ao maximo as subclasses e manter as mecanicas especificas
 de cada classe afetando apenas ela mesma e nao a classe 'Personagem'.
+    Personagem agora eh Serializable para ser salvo em arquivo binario, Curar
+agora checa dentro do metodo se o personagem esta vivo, se estiver morto nao
+cura.
 
 Sugestao:
 Mudar hp/hpA mp/mpA para doubles devido aos calculos e porcentagens.

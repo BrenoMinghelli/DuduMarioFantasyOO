@@ -11,6 +11,8 @@ sentido ser guardada apenas aqui, mesmo que fique um pouco mais complexo.
     Dessa forma, a variavel heroismStacks guarda quantas vezes o WhiteMage usou
 a magiaHeroism em cada Personagem. no fim do combate essa variavel eh resetada
 e para cada stack os ataques sao diminuidos para os valores antigos.
+    Magias de cura agora nao precisam checar taMorto() pois alteracao em 
+Personagem.curar() + alteracao em Revive.
 */
 public class WhiteMage extends Personagem{
     
