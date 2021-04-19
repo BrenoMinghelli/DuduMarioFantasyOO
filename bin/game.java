@@ -1,10 +1,12 @@
-package Alpha02;
+package Alpha02.bin;
 
+import Alpha02.bin.combatgenerator;
+import Alpha02.bin.Personagem;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 public class game {
-    public static int cenario(ArrayList<personagem> chars){
+    public static int cenario(ArrayList<Personagem> chars){
         Scanner teclado = new Scanner(System.in);
         int choice;
         int area=0;  //qual a area q o player esta atualmente

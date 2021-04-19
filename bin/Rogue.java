@@ -1,14 +1,14 @@
-package Alpha02;
+package Alpha02.bin;
 
 import java.util.ArrayList;
 
 /*
  */
-public class rogue extends personagem{
+public class Rogue extends Personagem{
     
     public boolean taunt=false;
     
-    public rogue(String nome){
+    public Rogue(String nome){
         super(nome,1,15,7,5);
     }
     
@@ -24,32 +24,35 @@ public class rogue extends personagem{
     // ToDo limitar o nivel igual fiz nas outras classes, por enquanto ta ilimitado para teste
     @Override
     public int habilidades(int qualAtaque, ArrayList inimigos, int qualInimigo){
+        
+        if(inimigos.isEmpty() | qualInimigo<0 | qualInimigo>= inimigos.size()){System.out.print("Alvo Invalido\n");return -1;}
+        
         switch (qualAtaque) {
             case 1 -> {
-                return this.ataqueBasico((inimigo)inimigos.get(qualInimigo));
+                return this.ataqueBasico((Inimigo)inimigos.get(qualInimigo));
             }
             case 2 -> {
-                if(this.getLvl()>=2){return this.ataqueSneak((inimigo)inimigos.get(qualInimigo));}
-                System.out.print("Nivel muito baixo\n");return 0;
+                if(this.getLvl()>=2){return this.ataqueSneak((Inimigo)inimigos.get(qualInimigo));}
+                System.out.print("Nivel muito baixo\n");return -1;
             }
             case 3 -> {
-                if(this.getLvl()>=5){return this.ataqueBloodyFinish((inimigo)inimigos.get(qualInimigo));}
-                System.out.print("Nivel muito baixo\n");return 0;
+                if(this.getLvl()>=5){return this.ataqueBloodyFinish((Inimigo)inimigos.get(qualInimigo));}
+                System.out.print("Nivel muito baixo\n");return -1;
             }
             case 4 -> {
                 if(this.getLvl()>=10){return this.ataqueDeathLotus(inimigos);}
-                System.out.print("Nivel muito baixo\n");return 0;
+                System.out.print("Nivel muito baixo\n");return -1;
             }
             case 5 -> {
-                if(this.getLvl()>=15){return this.ataqueDeathSentence((inimigo)inimigos.get(qualInimigo));}
-                System.out.print("Nivel muito baixo\n");return 0;
+                if(this.getLvl()>=15){return this.ataqueDeathSentence((Inimigo)inimigos.get(qualInimigo));}
+                System.out.print("Nivel muito baixo\n");return -1;
             }
-            default -> { System.out.print("Ataque Invalido\n");return 0;
+            default -> { System.out.print("Ataque Invalido\n");return -1;
             }
         }
     }
     
-    public int ataqueSneak(inimigo inimigo){
+    public int ataqueSneak(Inimigo inimigo){
         int dano;
         dano=randomroll.danoroll(10);
         dano+=(2*this.getAtk());
@@ -59,7 +62,7 @@ public class rogue extends personagem{
         return dano;
     }
     
-    public int ataqueBloodyFinish(inimigo inimigo){
+    public int ataqueBloodyFinish(Inimigo inimigo){
         int dano;
         dano=randomroll.danoroll(10);
         dano+=(4*this.getAtk());
@@ -69,7 +72,7 @@ public class rogue extends personagem{
         return dano;
     }
     
-    public int ataqueDeathLotus(ArrayList<inimigo> inimigos){
+    public int ataqueDeathLotus(ArrayList<Inimigo> inimigos){
         int danoTotal=0;
         System.out.print("DEATH LOTUS: ");
         this.tomaDano((int)(this.getHp()*0.5)+this.getDef());
@@ -82,7 +85,7 @@ public class rogue extends personagem{
         return danoTotal;
     }
     
-    public int ataqueDeathSentence(inimigo inimigo){
+    public int ataqueDeathSentence(Inimigo inimigo){
         int dano;
         dano=randomroll.danoroll(20);
         dano+=(6*this.getAtk());
@@ -104,5 +107,4 @@ public class rogue extends personagem{
             System.out.println("4.Death Sentence");
         }
     }
-    
 }

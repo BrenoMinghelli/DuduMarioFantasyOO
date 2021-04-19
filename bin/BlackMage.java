@@ -1,16 +1,16 @@
-package Alpha02;
+package Alpha02.bin;
 
 import java.util.ArrayList;
 
 /*
  */
-public class blackMage extends personagem{
+public class BlackMage extends Personagem{
     
     private int magia=7;
     private int mp=10;
     private int mpA=mp;
     
-    public blackMage(String nome){
+    public BlackMage(String nome){
         super(nome,1,15,5,5);
     }
     
@@ -28,36 +28,41 @@ public class blackMage extends personagem{
     
     @Override
     public int habilidades(int qualAtaque, ArrayList inimigos, int qualInimigo){
+        
+        if(inimigos.isEmpty() | qualInimigo<0 | qualInimigo>= inimigos.size()){System.out.print("Alvo Invalido\n");return -1;}
+        
+        //if(this.mpA<this.mp)this.mpA++; //regenera a mana passivamente todo turno, ativa varias vezes se o usuario errar a entrada de proposito
+        
         switch (qualAtaque) {
             case 1 -> {
-                return this.ataqueBasico((inimigo)inimigos.get(qualInimigo));
+                return this.ataqueBasico((Inimigo)inimigos.get(qualInimigo));
             }
             case 2 -> {
-                if(this.getLvl()>=2){return this.magiaFirebolt((inimigo)inimigos.get(qualInimigo));}
-                System.out.print("Nivel muito baixo\n");return 0;
+                if(this.getLvl()>=2){return this.magiaFirebolt((Inimigo)inimigos.get(qualInimigo));}
+                System.out.print("Nivel muito baixo\n");return -1;
             }
             case 3 -> {
-                if(this.getLvl()>=5){return this.magiaDarkSphere((inimigo)inimigos.get(qualInimigo));}
-                System.out.print("Nivel muito baixo\n");return 0;
+                if(this.getLvl()>=5){return this.magiaDarkSphere((Inimigo)inimigos.get(qualInimigo));}
+                System.out.print("Nivel muito baixo\n");return -1;
             }
             case 4 -> {
                 if(this.getLvl()>=10){return this.magiaFireball(inimigos);}
-                System.out.print("Nivel muito baixo\n");return 0;
+                System.out.print("Nivel muito baixo\n");return -1;
             }
             case 5 -> {
                 if(this.getLvl()>=15){return this.magiaDarkHole(inimigos);}
-                System.out.print("Nivel muito baixo\n");return 0;
+                System.out.print("Nivel muito baixo\n");return -1;
             }
-            default -> { System.out.print("Ataque Invalido\n");return 0;
+            default -> { System.out.print("Ataque Invalido\n");return -1;
             }
         }
     }
     
-    public int magiaFirebolt(inimigo inimigo){
+    public int magiaFirebolt(Inimigo inimigo){
         int dano;
         if(this.getMpA()<3){
             System.out.print("Mana insuficiente\n");
-            return 0;
+            return -1;
         }
         System.out.print("FIREBOLT: ");
         this.setMpA(this.getMpA() - 3);
@@ -68,11 +73,11 @@ public class blackMage extends personagem{
         return dano;
     }
     
-    public int magiaDarkSphere(inimigo inimigo){
+    public int magiaDarkSphere(Inimigo inimigo){
         int dano;
         if(this.getMpA()<7){
             System.out.print("Mana insuficiente\n");
-            return 0;
+            return -1;
         }
         System.out.print("DARK SPHERE: ");
         this.setMpA(this.getMpA() - 7);
@@ -83,11 +88,11 @@ public class blackMage extends personagem{
         return dano;
     }
     
-    public int magiaFireball(ArrayList<inimigo> inimigos){
+    public int magiaFireball(ArrayList<Inimigo> inimigos){
         int danoTotal=0;
         if(this.getMpA()<(this.getMp()*0.2)){
             System.out.print("Mana insuficiente\n");
-            return 0;
+            return -1;
         }
         System.out.print("FIREBALL: ");
         this.setMpA(this.getMpA() - (int) (this.getMp() * 0.2));
@@ -100,11 +105,11 @@ public class blackMage extends personagem{
         return danoTotal;
     }
     
-    public int magiaDarkHole(ArrayList<inimigo> inimigos){
+    public int magiaDarkHole(ArrayList<Inimigo> inimigos){
         int danoTotal=0;
         if(this.getMpA()<(this.getMp()*0.5)){
             System.out.print("Mana insuficiente\n");
-            return 0;
+            return -1;
         }
         System.out.print("DARK HOLE: ");
         this.setMpA(this.getMpA() - (int) (this.getMp() * 0.5));

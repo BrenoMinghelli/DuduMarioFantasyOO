@@ -1,4 +1,4 @@
-package Alpha02;
+package Alpha02.bin;
 
 import java.util.Scanner;
 public class pausemenu {
