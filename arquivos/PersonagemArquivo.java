@@ -20,7 +20,7 @@ personagens e no fim do programa para salvar progresso.
  */
 public class PersonagemArquivo implements Serializable{
     
-    public static String caminho="src\\Alpha02\\arquivos\\PersonagensSalvos.txt"; //adicioanr caminho do arquivo
+    public static String caminho=System.getProperty("java.class.path")+System.getProperty("file.separator")+"Alpha02"+System.getProperty("file.separator")+"arquivos"+System.getProperty("file.separator")+"PersonagensSalvos.txt"; //adicioanr caminho do arquivo
     
     public static Personagem carregaPersonagem(int index) throws GameException{
         
