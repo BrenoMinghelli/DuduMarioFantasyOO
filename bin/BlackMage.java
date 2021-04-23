@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /*
  */
-public class BlackMage extends Personagem{
+public class BlackMage extends Personagem implements Mago{
     
     private int magia=7;
     private int mp=10;
@@ -14,8 +14,13 @@ public class BlackMage extends Personagem{
         super(nome,1,15,5,5);
     }
     
+    public BlackMage(String nome, int level){
+        super(nome,1,15,5,5);
+        for(int i=1;i<level;i++)this.levelUp();
+    }
+    
     @Override
-    public void levelup(){  //mecanica de lvl up, quando acumular X de xp, implementado dps
+    public void levelUp(){
         this.setLvl(this.getLvl()+1);
         this.setHp(this.getHp()+3);
         this.setAtk(this.getAtk()+1);
@@ -135,10 +140,16 @@ public class BlackMage extends Personagem{
         }
     }
     
+    @Override
     public int getMagia() {return magia;}
+    @Override
     public void setMagia(int magia) {this.magia = magia;}
+    @Override
     public int getMp() {return mp;}
+    @Override
     public void setMp(int mp) {this.mp = mp;}
+    @Override
     public int getMpA() {return mpA;}
+    @Override
     public void setMpA(int mpA) {this.mpA = mpA;}
 }

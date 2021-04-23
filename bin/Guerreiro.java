@@ -6,19 +6,25 @@ import java.util.ArrayList;
 */
 public class Guerreiro extends Personagem{
     
-    private boolean taunt=false;
+    private boolean taunt=false; //mecanica Guerreiro
     
     public Guerreiro(String nome){
         super(nome,1,20,7,5);
     }
     
+    public Guerreiro(String nome, int level){
+        super(nome,1,20,7,5);
+        for(int i=1;i<level;i++)this.levelUp();
+    }
+    
     @Override
-    public void levelup(){  //mecanica de lvl up, quando acumular X de xp, implementado dps
+    public void levelUp(){
         this.setLvl(this.getLvl()+1);
         this.setHp(this.getHp()+5);
         this.setAtk(this.getAtk()+3);
         this.setDef(this.getDef()+2);
         this.setHpA(this.getHpA()+5);
+        System.out.println(" . . . to upando . . ."); //teste
     }
     
     @Override

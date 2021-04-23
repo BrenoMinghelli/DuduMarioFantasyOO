@@ -17,6 +17,11 @@ Heroism esta persistindo.
     Agora os personagens sao salvos em um arquivo, e no fim de cada execucao eh
 possivel dar "Save Game", e voltar do nivel que parou por exemplo. Deixei como
 comentarios a reinicializacao para personagens lvl 1 para caso de bug.
+
+        IMPORTANTE
+    A cada modificacao da classe personagem ou subs eh necessario recriar os
+personagens lvl 1, pois a estrutura da classe foi modificada, entao da erro na
+leitura do arquivo
 */
 public class TesteMain {
     
@@ -24,13 +29,14 @@ public class TesteMain {
         
         ArrayList<Personagem> personagens=new ArrayList<Personagem>();
         
-        /*//Cria personagens novos lvl 1
-        Guerreiro p1=new Guerreiro("Guerreiro");personagens.add(p1);
+        /*//Cria personagens novos lvl 1. Rodar sempre que alterar classes Personagem !!!
+        Guerreiro p1=new Guerreiro("GUERREIRO");personagens.add(p1);
         BlackMage p2=new BlackMage("MAGO");personagens.add(p2);
         WhiteMage p3=new WhiteMage("CLERIGO");personagens.add(p3);
         Rogue p4=new Rogue("ROGUE");personagens.add(p4);
         
         PersonagemArquivo.salvaTodos(personagens);
+        personagens.clear();
         //*/
         
         //* //Carrega os personagens para o jogo
@@ -42,14 +48,17 @@ public class TesteMain {
             Logger.getLogger(TesteMain.class.getName()).log(Level.SEVERE, null, ex);
             }
         }//*/
-        /* upa personagens para o lvl 5
+        
+        /* upa personagens para o lvl 15
         for(int i=0;i<4;i++){
         for(int j=0;j<15;j++){
-        personagens.get(i).levelup();
+        personagens.get(i).levelUp();
         }
         }//*/
-            
-        combatgenerator.gerar(0, personagens);//*/
+        
+        for(int i=0;i<personagens.size();i++)personagens.get(i).imprime();
+        
+        //combatgenerator.gerar(0, personagens);//*/
         
         //PersonagemArquivo.salvaTodos(personagens); //Ao fim do programa salva todos os personagens
     }

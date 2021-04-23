@@ -17,11 +17,12 @@ Mudar hp/hpA mp/mpA para doubles devido aos calculos e porcentagens.
 public abstract class Personagem implements Serializable{
     
     private String nome;
-    private int lvl;
+    private int lvl=1;
     private int hp;
     private int hpA;
     private int atk;
     private int def;
+    private int xp=0;//sobe um nivel a cada 10 de xp
     
     //static mochila mochila;//ToDo: Como saber qual objeto passar de parametro para o item?
     //public int usarItem(int qualItem,){return 0;}
@@ -33,11 +34,13 @@ public abstract class Personagem implements Serializable{
         this.hpA=h;
         this.atk=a;
         this.def=d;
+        //for( l ) this.levelUp(); //implementar nos outros construtores
     }
     
     public abstract int habilidades(int qualAtaque, ArrayList inimigos, int qualInimigo);
     
-    public abstract void levelup();
+    //a funcao ganhaXp chama levelUp
+    public abstract void levelUp();
     
     public int ataqueBasico(Inimigo inimigo){
         int dano;
@@ -70,8 +73,17 @@ public abstract class Personagem implements Serializable{
         else return true;
     }
     
-    public void imprimeHP(){  //entrada com nome para o print fazer dps,seria removida com a interface
-        System.out.println("Player"+getHpA()+"/"+getHp());
+    public void ganhaXp(int ganha){//sobe um nivel a cada 10 de xp
+        int temp=this.xp%10;
+        while(temp+ganha>=10){
+            this.levelUp();
+            temp-=10;
+        }
+        this.xp+=ganha;
+    }
+    
+    public void imprime(){
+        System.out.println(this.nome+"\nLevel: "+this.lvl+"\nHP: "+getHpA()+"/"+getHp());
     }
     
     public String getNome() {return nome;}
@@ -86,4 +98,6 @@ public abstract class Personagem implements Serializable{
     public void setAtk(int atk) {this.atk = atk;}
     public int getDef() {return def;}
     public void setDef(int def) {this.def = def;}
+    public int getXp() {return xp;}
+    public void setXp(int xp) {this.xp = xp;}
 }

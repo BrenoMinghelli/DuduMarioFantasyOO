@@ -6,14 +6,17 @@ import java.util.ArrayList;
  */
 public class Rogue extends Personagem{
     
-    public boolean taunt=false;
-    
     public Rogue(String nome){
         super(nome,1,15,7,5);
     }
     
+    public Rogue(String nome, int level){
+        super(nome,1,15,7,5);
+        for(int i=1;i<level;i++)this.levelUp();
+    }
+    
     @Override
-    public void levelup(){  //mecanica de lvl up, quando acumular X de xp, implementado dps
+    public void levelUp(){
         this.setLvl(this.getLvl()+1);
         this.setHp(this.getHp()+3);
         this.setAtk(this.getAtk()+4);
@@ -21,7 +24,6 @@ public class Rogue extends Personagem{
         this.setHpA(this.getHpA()+3);
     }
     
-    // ToDo limitar o nivel igual fiz nas outras classes, por enquanto ta ilimitado para teste
     @Override
     public int habilidades(int qualAtaque, ArrayList inimigos, int qualInimigo){
         
