@@ -1,0 +1,6 @@
+¨Ì sr game.Guerreiro        Z tauntxr game.Personagem        I atkI defI hpI hpAI lvlI xpL nomet Ljava/lang/String;xp   1   !   Z   Z       t 	GUERREIRO ¨Ì sr game.BlackMage        I magiaI mpI mpAxr game.Personagem        I atkI defI hpI hpAI lvlI xpL nomet Ljava/lang/String;xp         9   9       t MAGO   1   P   P¨Ì sr game.WhiteMage        I magiaI mpI mpAL 
+heroismStackst Ljava/util/ArrayList;xr game.Personagem        I atkI defI hpI hpAI lvlI xpL nomet Ljava/lang/String;xp      !   I   I       t CLERIGO   1   P   Psr java.util.ArrayListxÅ“ô«aù I sizexp   w   sr java.lang.Integer‚†§˜Åá8 I valuexr java.lang.NumberÜ¨ïî‡ã  xp    q ~ 
+q ~ 
+q ~ 
+x¨Ì sr 
+game.Rogue         xr game.Personagem        I atkI defI hpI hpAI lvlI xpL nomet Ljava/lang/String;xp   ?      9   9       t ROGUE
