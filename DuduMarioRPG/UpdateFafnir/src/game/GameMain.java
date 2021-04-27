@@ -16,13 +16,6 @@ public class GameMain {
     public static void main(String[] args) {
         ArrayList<Personagem> personagens=new ArrayList<Personagem>();
         
-        Guerreiro p1=new Guerreiro("GUERREIRO",15);personagens.add(p1);
-BlackMage p2=new BlackMage("MAGO",15);personagens.add(p2);
-WhiteMage p3=new WhiteMage("CLERIGO",15);personagens.add(p3);
-Rogue p4=new Rogue("ROGUE",15);personagens.add(p4);       
-PersonagensArquivo.salvaTodos(personagens);
-personagens.clear();
-        
         //* //Carrega os personagens lvl 15 para o jogo
         for(int i=0;i<4;i++){
             Personagem teste;
