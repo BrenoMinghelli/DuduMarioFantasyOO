@@ -3,6 +3,9 @@ package game;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/*      Comentarios:
+Agora implementa 'Dano Verdadeiro', variante de tomaDano(), que recebe true e
+ignora a defesa.*/
 public abstract class Personagem implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -52,6 +55,14 @@ public abstract class Personagem implements Serializable{
         }
         setHpA(getHpA() - dano);
         System.out.print("O "+this.getNome()+" toma "+dano+" de dano\n");
+    }
+    
+    public void tomaDano(int dano,boolean bool){
+        if(bool){
+            setHpA(getHpA() - dano);
+            System.out.print("O "+this.getNome()+" toma "+dano+" de dano\n");
+            return;
+        }tomaDano(dano);
     }
     
     public boolean taMorto(){

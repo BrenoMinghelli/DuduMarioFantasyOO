@@ -136,7 +136,7 @@ public class WhiteMage extends Personagem implements Mago{
         @Override
     public void showActions(){  //mostra as a��es possiveis ao jogador
     	System.out.println("Turno do "+this.getNome()+"  "+this.getHpA()+"/"+this.getHp());
-        System.out.println("1.Ataque basico");
+        System.out.println("0.Mochila\n1.Ataque basico");
         if(getLvl()>=2){
             System.out.println("2.Heal");
         }if(getLvl()>=5){

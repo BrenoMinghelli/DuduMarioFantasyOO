@@ -15,11 +15,12 @@ Scanner teclado = new Scanner(System.in);
     
     public Combate(){};//SUBCLASSES : adicionar os inimigos no construtor
     
-    public void lutar(ArrayList<Personagem> personagens){
+    public void lutar(ArrayList<Personagem> personagens, Mochila mochila){
         //variaveis auxiliares
         int saida=0;
         int entradaHabilidade;
         int entradaAlvo;
+        int entradaItem=-1;
         
         while(saida==0){//saida caso todos os inimigos estejam mortos
             
@@ -32,12 +33,19 @@ Scanner teclado = new Scanner(System.in);
                     while(true){//repetir entrada caso invalido
                         
                         System.out.println("Qual habilidade usar?\n");
-                        entradaHabilidade=teclado.nextInt();//habilidades comecam do 1, diferente do Array
+                        entradaHabilidade=teclado.nextInt();//habilidades comecam do 1, diferente do Array, 0 para mochila
+                        
+                        if(entradaHabilidade==0){//escolhendo item
+                            mochila.imprime();
+                            System.out.println("Qual item usar?\n");
+                            entradaItem=teclado.nextInt()-1;
+                        }
+                        
                         System.out.println("Qual alvo?\n");
                         entradaAlvo=teclado.nextInt()-1; //-1 pois tratamos de Array, logo posicao 1 = 0
 
-                        //trocar para modo cura no caso especifico do clerigo ; ToDo achar solucao melhor com uma unica classe habilidades
-                        if(personagens.get(i) instanceof WhiteMage & entradaHabilidade>1){
+                        if(entradaHabilidade==0){if(mochila.usaItem(entradaItem, personagens.get(i), inimigos, entradaAlvo)>=0)break;}
+                        else if(personagens.get(i) instanceof WhiteMage & entradaHabilidade>1){//trocar para modo cura no caso especifico do clerigo
                             if(personagens.get(i).habilidades(entradaHabilidade, personagens, entradaAlvo)>=0)break;
                         }else if(personagens.get(i).habilidades(entradaHabilidade, this.inimigos, entradaAlvo)>=0)break;
                     }

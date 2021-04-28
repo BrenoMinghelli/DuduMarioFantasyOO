@@ -1,11 +1,8 @@
 package game;
 
 import arquivo.PersonagensArquivo;
-import game.Personagem;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*      Comentarios:
     Classe arquivo funcionando, caso não queira usar deixe comentado. 
@@ -14,8 +11,15 @@ mas deixei aqui para testes por enquanto.*/
 public class GameMain {
 
     public static void main(String[] args) {
+        
         ArrayList<Personagem> personagens=new ArrayList<Personagem>();
-
+        Mochila mochila=new Mochila();
+        
+        PocaoFogo pocao1=new PocaoFogo();
+        PocaoCura pocao2=new PocaoCura();
+        mochila.adicionaItem(pocao1);mochila.adicionaItem(pocao1);
+        mochila.adicionaItem(pocao2);mochila.adicionaItem(pocao2);
+        
         /*//Reseta os personagens do arquivo
         Guerreiro p1=new Guerreiro("GUERREIRO");personagens.add(p1);
         BlackMage p2=new BlackMage("MAGO");personagens.add(p2);
@@ -37,14 +41,17 @@ public class GameMain {
             System.out.println("1.Procurar um combate\n2.Descansar na cidade\n3.Olhar os personagens\n4.Sair do jogo");
             escolha = teclado.nextInt();
             if(escolha==1) {
-                AcharCombate.encontro(personagens);
+                AcharCombate.encontro(personagens,mochila);
             }
             if(escolha==2) {
                 RegenChars.regenChars(personagens);
             }
             if(escolha==3) {
                 //show chars
+                System.out.println("- - - Herois - - -");
                 for(Personagem var:personagens)var.imprime();
+                System.out.println("- - - Mochila - - -");
+                mochila.imprime();
             }
             if(escolha==4) {
                 teclado.close();
