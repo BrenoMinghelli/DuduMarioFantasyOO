@@ -15,7 +15,7 @@ public class GameMain {
 
     public static void main(String[] args) {
         ArrayList<Personagem> personagens=new ArrayList<Personagem>();
-        
+
         /*//Reseta os personagens do arquivo
         Guerreiro p1=new Guerreiro("GUERREIRO");personagens.add(p1);
         BlackMage p2=new BlackMage("MAGO");personagens.add(p2);
