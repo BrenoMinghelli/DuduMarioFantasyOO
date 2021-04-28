@@ -60,7 +60,7 @@ public class Rogue extends Personagem{
         dano=RandomRoll.danoroll(10);
         dano+=(2*this.getAtk());
         System.out.print("SNEAK ATTACK: ");
-        this.tomaDano((int)(this.getHp()*0.1),true);
+        this.tomaDano((int)(this.getHpA()*0.1),true);
         inimigo.tomaDano(dano);
         return dano;
     }
@@ -70,7 +70,7 @@ public class Rogue extends Personagem{
         dano=RandomRoll.danoroll(10);
         dano+=(4*this.getAtk());
         System.out.print("BLOODY FINISH: ");
-        this.tomaDano((int)(this.getHp()*0.5),true);
+        this.tomaDano((int)(this.getHpA()*0.5),true);
         inimigo.tomaDano(dano);
         return dano;
     }
@@ -78,7 +78,7 @@ public class Rogue extends Personagem{
     public int ataqueDeathLotus(ArrayList<Inimigo> inimigos){
         int danoTotal=0;
         System.out.print("DEATH LOTUS: ");
-        this.tomaDano((int)(this.getHp()*0.5),true);
+        this.tomaDano((int)(this.getHpA()*0.5),true);
         for(int i=0;i<inimigos.size();i++){
             int dano=RandomRoll.danoroll(10);
             dano+=(2*this.getAtk());
@@ -93,13 +93,13 @@ public class Rogue extends Personagem{
         dano=RandomRoll.danoroll(20);
         dano+=(6*this.getAtk());
         System.out.print("DEATH SENTENCE: ");
-        this.tomaDano((int)(this.getHp()*0.8),true);
+        this.tomaDano((int)(this.getHpA()*0.8),true);
         inimigo.tomaDano(dano);
         return dano;
     }
     
         @Override
-    public void showActions(){  //mostra as a��es possiveis ao jogador
+    public void showActions(){  //mostra as açoes possiveis ao jogador
     	System.out.println("Turno do "+this.getNome()+"  "+this.getHpA()+"/"+this.getHp());
         System.out.println("0.Mochila\n1.Ataque basico");
         if(getLvl()>=2){
