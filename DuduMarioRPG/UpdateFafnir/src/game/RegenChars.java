@@ -10,8 +10,8 @@ public class RegenChars {
         
         for(int i=0;i<personagens.size();i++) {
             personagens.get(i).regenHP();
-            personagens.get(i).imprime();
             if(personagens.get(i) instanceof Mago)((Mago) personagens.get(i)).regenMP();
+            personagens.get(i).imprime();
         }
     }
 }

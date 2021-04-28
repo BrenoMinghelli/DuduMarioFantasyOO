@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 /*      Comentarios:
     Corrigido bug de dano em Area, agora os inimigos sao removidos do array do
 ultimo ao primeiro, o que deve evitar IndexOutOfBounds.
@@ -26,7 +27,8 @@ Scanner teclado = new Scanner(System.in);
             for(int i=0;i<personagens.size();i++){
                 
                 if(personagens.get(i).taMorto()==false){//checando se o Personagem esta morto
-                	MostrarAction.mostrarAction(i,personagens);
+                    
+                    personagens.get(i).showActions();
                     while(true){//repetir entrada caso invalido
                         
                         System.out.println("Qual habilidade usar?\n");
@@ -35,7 +37,7 @@ Scanner teclado = new Scanner(System.in);
                         entradaAlvo=teclado.nextInt()-1; //-1 pois tratamos de Array, logo posicao 1 = 0
 
                         //trocar para modo cura no caso especifico do clerigo ; ToDo achar solucao melhor com uma unica classe habilidades
-                        if(WhiteMage.class==personagens.get(i).getClass() & entradaHabilidade>1){
+                        if(personagens.get(i) instanceof WhiteMage & entradaHabilidade>1){
                             if(personagens.get(i).habilidades(entradaHabilidade, personagens, entradaAlvo)>=0)break;
                         }else if(personagens.get(i).habilidades(entradaHabilidade, this.inimigos, entradaAlvo)>=0)break;
                     }
@@ -52,11 +54,12 @@ Scanner teclado = new Scanner(System.in);
                 if(((Guerreiro)personagens.get(0)).isTaunting() & ((Guerreiro)personagens.get(0)).taMorto()==false)inimigoTemp.atacar(personagens.get(0));//mecanica Taunt do Guerreiro
                 else inimigoTemp.atacar(personagens); //random, porem tem que checar personagens.isDead para funcionar
                 
-                for(int i=0; i<4;i++){//checa quantos personagens estao mortos
+                for(int i=0; i<personagens.size();i++){//checa quantos personagens estao mortos
                     if(personagens.get(i).taMorto()){
                         saida--;
                     }
-                }
+                }if(saida!=(-1)*personagens.size())saida=0;
+            else if(saida==(-1)*personagens.size())break;
             }
             
             //checando condicoes de parada e resetando algumas mecanicas
@@ -75,6 +78,5 @@ Scanner teclado = new Scanner(System.in);
         }else if(saida<0){
             System.out.print("Os personagens foram derrotados!\n");
         }
-        
     }
 }

@@ -2,6 +2,8 @@ package game;
 
 import java.util.ArrayList;
 
+/*      Comentarios:
+As magias agora ignoram a defesa do inimigo.*/
 public class BlackMage extends Personagem implements Mago{
 
 	private static final long serialVersionUID = 1L;
@@ -71,7 +73,7 @@ public class BlackMage extends Personagem implements Mago{
         System.out.print("FIREBOLT: ");
         this.setMpA(this.getMpA() - 3);
         dano=RandomRoll.danoroll(7);
-        dano+=(this.getMagia());
+        dano+=(this.getMagia()+inimigo.getDef());
         inimigo.tomaDano(dano);
         
         return dano;
@@ -86,7 +88,7 @@ public class BlackMage extends Personagem implements Mago{
         System.out.print("DARK SPHERE: ");
         this.setMpA(this.getMpA() - 7);
         dano=RandomRoll.danoroll(10);
-        dano+=(2*this.getMagia());
+        dano+=(2*this.getMagia()+inimigo.getDef());
         inimigo.tomaDano(dano);
         
         return dano;
@@ -102,7 +104,7 @@ public class BlackMage extends Personagem implements Mago{
         this.setMpA(this.getMpA() - (int) (this.getMp() * 0.2));
         for(int i=0;i<inimigos.size();i++){
             int dano=RandomRoll.danoroll(10);
-            dano+=(2*this.getMagia());
+            dano+=(2*this.getMagia()+inimigos.get(i).getDef());
             danoTotal+=dano;
             inimigos.get(i).tomaDano(dano);
         }
@@ -119,15 +121,16 @@ public class BlackMage extends Personagem implements Mago{
         this.setMpA(this.getMpA() - (int) (this.getMp() * 0.5));
         for(int i=0;i<inimigos.size();i++){
             int dano=RandomRoll.danoroll(15);
-            dano+=(4*this.getMagia());
+            dano+=(4*this.getMagia()+inimigos.get(i).getDef());
             danoTotal+=dano;
             inimigos.get(i).tomaDano(dano);
         }
         return danoTotal;
     }
     
+        @Override
     public void showActions(){  //mostra as a��es possiveis ao jogador
-    	System.out.println("Turno do Rei Suuuusssss  "+this.hpA+"/"+this.hp);
+    	System.out.println("Turno do "+this.getNome()+"  "+this.getHpA()+"/"+this.getHp());
         System.out.println("1.Ataque basico");
         if(this.getLvl()>=2){
             System.out.println("2.Firebolt");

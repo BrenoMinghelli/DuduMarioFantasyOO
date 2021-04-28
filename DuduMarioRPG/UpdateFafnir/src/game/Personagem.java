@@ -7,13 +7,13 @@ public abstract class Personagem implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private String nome;
-    private int lvl=1;
-    protected int hp;
-    protected int hpA;
-    private int atk;
-    private int def;
-    private int xp=0;
-    
+        private int lvl=1;
+        private int hp;
+        private int hpA;
+        private int atk;
+        private int def;
+        private int xp=0;
+           
     public Personagem(String n,int l,int h,int a,int d){
         this.nome=n;
         this.lvl=l;
@@ -59,18 +59,18 @@ public abstract class Personagem implements Serializable{
         else return true;
     }
     
-    public void ganhaXp(int ganha){//sobe um nivel a cada 10 de xp
-        int temp=this.xp%10;
-        while(temp+ganha>=10){
-            this.levelUp();
-            temp-=10;
-        }
+    public void ganhaXp(int ganha){//aumenta a xp e upa o lvl caso tenha o necessario
+        //Funcao Nova com xp variavel por nivel
+        while(this.getXp()+ganha>=NivelXp.xpParaProxNivel(this.getLvl())){//while usado para casos de upar 2 lvl ao mesmo tempo
+            this.levelUp();}
         this.xp+=ganha;
     }
     
     public void imprime(){
         System.out.println(this.nome+"\nLevel: "+this.lvl+"\nHP: "+getHpA()+"/"+getHp());
     }
+    
+    public abstract void showActions();
     
     public void regenHP() {
     	hpA=hp;

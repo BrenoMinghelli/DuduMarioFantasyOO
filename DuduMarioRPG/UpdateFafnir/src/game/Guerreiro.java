@@ -2,7 +2,6 @@ package game;
 
 import java.util.ArrayList;
 
-
 public class Guerreiro extends Personagem{
     static final long serialVersionUID = 1L;
     private boolean taunt=false; //mecanica Guerreiro
@@ -23,7 +22,6 @@ public class Guerreiro extends Personagem{
         this.setAtk(this.getAtk()+3);
         this.setDef(this.getDef()+2);
         this.setHpA(this.getHpA()+5);
-        //System.out.println(" . . . to upando . . ."); //teste
     }
     
     @Override
@@ -74,12 +72,13 @@ public class Guerreiro extends Personagem{
     public int ataqueTaunt(ArrayList<Inimigo> inimigos){//se o taunt durar mais que 1 turno vai ser necessario checar isTaunting antes
         this.taunt=true;
         this.setDef(this.getDef()+5); //colocar o numero de defesa
-        System.out.print("TAUNT: ");
+        System.out.print("TAUNT\n");
         return 0;
     }
     
+    @Override
     public void showActions(){  //mostra as a��es possiveis ao jogador
-    	System.out.println("Turno do Dudu Mario   "+this.hpA+"/"+this.hp);
+    	System.out.println("Turno do "+this.getNome()+"  "+this.getHpA()+"/"+this.getHp());
         System.out.println("1.Ataque basico");
         if(getLvl()>=5){
             System.out.println("2.Bash");

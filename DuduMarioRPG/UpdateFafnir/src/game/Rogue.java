@@ -96,8 +96,9 @@ public class Rogue extends Personagem{
         return dano;
     }
     
+        @Override
     public void showActions(){  //mostra as a��es possiveis ao jogador
-    	System.out.println("Turno do Nyx    "+this.hpA+"/"+this.hp);
+    	System.out.println("Turno do "+this.getNome()+"  "+this.getHpA()+"/"+this.getHp());
         System.out.println("1.Ataque basico");
         if(getLvl()>=2){
             System.out.println("2.Sneak Attack");
@@ -110,4 +111,3 @@ public class Rogue extends Personagem{
         }
     }
 }
-

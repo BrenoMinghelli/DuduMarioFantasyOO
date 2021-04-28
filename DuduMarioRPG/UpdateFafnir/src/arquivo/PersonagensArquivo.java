@@ -45,6 +45,15 @@ public class PersonagensArquivo {
         throw new GameException();
     }
     
+    public static void carregaPersonagens(ArrayList<Personagem> personagens){
+        for(int i=0;i<4;i++){
+                Personagem teste;
+                try {teste = PersonagensArquivo.carregaPersonagem(i);
+                    personagens.add(teste);
+                } catch (GameException ex) {Logger.getLogger(PersonagensArquivo.class.getName()).log(Level.SEVERE, null, ex);}
+            }
+    }
+    
     public static int salvaTodos(ArrayList<Personagem> personagens){
         apaga();
         for(Personagem var:personagens){
@@ -52,6 +61,7 @@ public class PersonagensArquivo {
         }
         return 1;
     }
+    
     
     public static int salvaPersonagem(Personagem personagem){
         try {
