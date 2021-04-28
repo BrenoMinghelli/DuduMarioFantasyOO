@@ -54,7 +54,7 @@ public class Guerreiro extends Personagem{
         int dano;
         dano=RandomRoll.danoroll(10);
         dano+=(2*this.getAtk());
-        this.tomaDano((int)(this.getHp()*0.1),true); //Recebe dano "Verdadeiro" que ignora defesa
+        this.tomaDano((int)(this.getHpA()*0.1),true); //Recebe dano "Verdadeiro" que ignora defesa
         System.out.print("BASH: ");
         inimigo.tomaDano(dano);
         return dano;
@@ -77,7 +77,7 @@ public class Guerreiro extends Personagem{
     }
     
     @Override
-    public void showActions(){  //mostra as a��es possiveis ao jogador
+    public void showActions(){  //mostra as açoes possiveis ao jogador
     	System.out.println("Turno do "+this.getNome()+"  "+this.getHpA()+"/"+this.getHp());
         System.out.println("0.Mochila\n1.Ataque basico");
         if(getLvl()>=5){
