@@ -2,6 +2,8 @@ package game;
 
 import java.util.ArrayList;
 
+/*      Comentarios:
+As magias agora ignoram a defesa do inimigo.*/
 public class BlackMage extends Personagem implements Mago{
 
 	private static final long serialVersionUID = 1L;
@@ -72,7 +74,7 @@ public class BlackMage extends Personagem implements Mago{
         this.setMpA(this.getMpA() - 3);
         dano=RandomRoll.danoroll(7);
         dano+=(this.getMagia());
-        inimigo.tomaDano(dano);
+        inimigo.tomaDano(dano,true);
         
         return dano;
     }
@@ -87,7 +89,7 @@ public class BlackMage extends Personagem implements Mago{
         this.setMpA(this.getMpA() - 7);
         dano=RandomRoll.danoroll(10);
         dano+=(2*this.getMagia());
-        inimigo.tomaDano(dano);
+        inimigo.tomaDano(dano,true);
         
         return dano;
     }
@@ -104,7 +106,7 @@ public class BlackMage extends Personagem implements Mago{
             int dano=RandomRoll.danoroll(10);
             dano+=(2*this.getMagia());
             danoTotal+=dano;
-            inimigos.get(i).tomaDano(dano);
+            inimigos.get(i).tomaDano(dano,true);
         }
         return danoTotal;
     }
@@ -121,14 +123,15 @@ public class BlackMage extends Personagem implements Mago{
             int dano=RandomRoll.danoroll(15);
             dano+=(4*this.getMagia());
             danoTotal+=dano;
-            inimigos.get(i).tomaDano(dano);
+            inimigos.get(i).tomaDano(dano,true);
         }
         return danoTotal;
     }
     
-    public void showActions(){  //mostra as ações possiveis ao jogador
-    	System.out.println("Turno do Rei Suuuusssss  "+this.hpA+"/"+this.hp);
-        System.out.println("1.Ataque basico");
+        @Override
+    public void showActions(){  //mostra as aï¿½ï¿½es possiveis ao jogador
+    	System.out.println("Turno do "+this.getNome()+"  "+this.getHpA()+"/"+this.getHp());
+        System.out.println("0.Mochila\n1.Ataque basico");
         if(this.getLvl()>=2){
             System.out.println("2.Firebolt");
         }if(this.getLvl()>=5){
@@ -138,6 +141,12 @@ public class BlackMage extends Personagem implements Mago{
         }if(this.getLvl()>=15){
             System.out.println("5.DarkHole");
         }
+    }
+    
+    @Override
+    public void imprime(){
+        super.imprime();
+        System.out.println("MP: "+getMpA()+"/"+getMp());
     }
     
     @Override

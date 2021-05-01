@@ -6,7 +6,7 @@ public class GetPersonagens {
         
 		Guerreiro P1 = new Guerreiro("Dudu Mario");// para mudar o nivel no start so adicionar ("nome",lvl)
         BlackMage P2 = new BlackMage("Suuussss");
-        WhiteMage P3 = new WhiteMage("Waifu");
+        WhiteMage P3 = new WhiteMage("Waifu do Dudu Mario");
         Rogue P4 = new Rogue("Nyx");
         personagens.add(P1);
         personagens.add(P2);

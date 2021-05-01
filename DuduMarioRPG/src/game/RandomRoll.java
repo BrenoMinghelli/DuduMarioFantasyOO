@@ -13,4 +13,9 @@ public class RandomRoll {
 		int ro=r.nextInt(100);
 		return ro;
 	}
+	public static int targetRoll() {
+		Random r = new Random();
+		int ro=r.nextInt(4);
+		return ro;
+	}
 }

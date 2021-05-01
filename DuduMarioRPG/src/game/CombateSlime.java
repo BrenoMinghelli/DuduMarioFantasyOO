@@ -7,5 +7,7 @@ public class CombateSlime extends Combate{
         Slime slimeBranco=new Slime("Branco");
     
         this.inimigos.add(slimeAzul);this.inimigos.add(slimeBranco);
-    }
+        this.xp=50;
+        this.nomeI="os slimes";    
+        }
 }

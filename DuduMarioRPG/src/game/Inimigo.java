@@ -2,6 +2,9 @@ package game;
 
 import java.util.ArrayList;
 
+/*      Comentarios:
+Agora implementa 'Dano Verdadeiro', variante de tomaDano(), que recebe true e
+ignora a defesa.*/
 public abstract class Inimigo {
 	private String nome;
     private int hp;
@@ -54,13 +57,21 @@ public abstract class Inimigo {
         return dano;
     }
     
-    public void tomaDano(int dano){  //reduz o hp do player com a entrada de dano, ja fatorando a redução pela def
+    public void tomaDano(int dano){  //reduz o hp do player com a entrada de dano, ja fatorando a reduï¿½ï¿½o pela def
         dano-=this.getDef();
         if(dano<=0){
             dano=1;  //min 1 de dano causado
         }
         this.setHpA(this.getHpA() - dano);
         System.out.print("O "+this.getNome()+" toma "+dano+" de dano\n");
+    }
+    
+    public void tomaDano(int dano,boolean bool){
+        if(bool){
+            setHpA(getHpA() - dano);
+            System.out.print("O "+this.getNome()+" toma "+dano+" de dano\n");
+            return;
+        }tomaDano(dano);
     }
     
     public boolean taMorto(){

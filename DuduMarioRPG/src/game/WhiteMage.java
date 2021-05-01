@@ -2,6 +2,9 @@ package game;
 
 import java.util.ArrayList;
 
+/*      Comentario:
+    Correcao de bug em heroismStacks, caso o personagem fosse iniciado em lvl>1
+o array nao era iniciado corretamente.*/
 public class WhiteMage extends Personagem implements Mago{
 	
 	private static final long serialVersionUID = 1L;
@@ -18,6 +21,7 @@ public class WhiteMage extends Personagem implements Mago{
     
     public WhiteMage(String nome, int level){
         super(nome,1,17,5,5);
+        for(int i=0;i<4;i++)this.heroismStacks.add(0);
         for(int i=1;i<level;i++)this.levelUp();
     }
     
@@ -129,9 +133,10 @@ public class WhiteMage extends Personagem implements Mago{
         }this.heroismStacks.replaceAll(e -> 0);//reseta o Array para 0
     }
     
-    public void showActions(){  //mostra as ações possiveis ao jogador
-    	System.out.println("Turno da Waifu do Dudu Mario    "+this.hpA+"/"+this.hp);
-        System.out.println("1.Ataque basico");
+        @Override
+    public void showActions(){  //mostra as açoes possiveis ao jogador
+    	System.out.println("Turno do "+this.getNome()+"  "+this.getHpA()+"/"+this.getHp());
+        System.out.println("0.Mochila\n1.Ataque basico");
         if(getLvl()>=2){
             System.out.println("2.Heal");
         }if(getLvl()>=5){
@@ -141,6 +146,12 @@ public class WhiteMage extends Personagem implements Mago{
         }if(getLvl()>=15){
             System.out.println("5.Holy Light");
         }
+    }
+    
+    @Override
+    public void imprime(){
+        super.imprime();
+        System.out.println("MP: "+getMpA()+"/"+getMp());
     }
     
     @Override
