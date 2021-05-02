@@ -13,6 +13,7 @@ public class Guerreiro extends Personagem{
     public Guerreiro(String nome, int level){
         super(nome,1,20,7,5);
         for(int i=1;i<level;i++)this.levelUp();
+        if(level>1)this.setXp(NivelXp.xpParaProxNivel(level-1));
     }
     
     @Override
@@ -77,7 +78,7 @@ public class Guerreiro extends Personagem{
     }
     
     @Override
-    public void showActions(){  //mostra as açoes possiveis ao jogador
+    public void showActions(){  //mostra as acoes possiveis ao jogador
     	System.out.println("Turno do "+this.getNome()+"  "+this.getHpA()+"/"+this.getHp());
         System.out.println("0.Mochila\n1.Ataque basico");
         if(getLvl()>=5){

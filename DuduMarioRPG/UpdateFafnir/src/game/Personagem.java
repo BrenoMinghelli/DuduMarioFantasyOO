@@ -3,9 +3,9 @@ package game;
 import java.util.ArrayList;
 import java.io.Serializable;
 
-/*      Comentarios:
-Agora implementa 'Dano Verdadeiro', variante de tomaDano(), que recebe true e
-ignora a defesa.*/
+/*      Ideia:
+Base para a criacao das classes do jogo. Manter mecanicas do personagem dentro
+da subclasse.*/
 public abstract class Personagem implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -26,6 +26,7 @@ public abstract class Personagem implements Serializable{
         this.def=d;
     }
     
+    //contem chamadas para todos os metodos de ataques ou habilidades dos personagens
     public abstract int habilidades(int qualAtaque, @SuppressWarnings("rawtypes") ArrayList inimigos, int qualInimigo);
     
     //a funcao ganhaXp chama levelUp
@@ -48,7 +49,7 @@ public abstract class Personagem implements Serializable{
         return cura;
     }
     
-    public void tomaDano(int dano){  //reduz o hp do player com a entrada de dano, ja fatorando a redu��o pela def
+    public void tomaDano(int dano){  //reduz o hp do player com a entrada de dano, ja fatorando a reducao pela def
         dano-=this.getDef();
         if(dano<=0){
             dano=1;  //min 1 de dano causado
@@ -57,7 +58,7 @@ public abstract class Personagem implements Serializable{
         System.out.print("O "+this.getNome()+" toma "+dano+" de dano\n");
     }
     
-    public void tomaDano(int dano,boolean bool){
+    public void tomaDano(int dano,boolean bool){ //Ignora a defesa do personagem ao tomar o dano
         if(bool){
             setHpA(getHpA() - dano);
             System.out.print("O "+this.getNome()+" toma "+dano+" de dano\n");
@@ -73,7 +74,9 @@ public abstract class Personagem implements Serializable{
     public void ganhaXp(int ganha){//aumenta a xp e upa o lvl caso tenha o necessario
         //Funcao Nova com xp variavel por nivel
         while(this.getXp()+ganha>=NivelXp.xpParaProxNivel(this.getLvl())){//while usado para casos de upar 2 lvl ao mesmo tempo
-            this.levelUp();}
+            this.levelUp();
+            System.out.println(" - "+this.getNome()+" avancou para o nivel "+this.getLvl()+"! - ");
+        }
         this.xp+=ganha;
     }
     

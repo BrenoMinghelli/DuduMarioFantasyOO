@@ -1,12 +1,12 @@
 package game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-/*      Comentarios:
-Pensei em usar um HashSet, ja que itens nao guardaria duplicatas, ele aumentaria
-o valor quantidade dentro do item caso fosse duplicado, mas tive problemas e
-mantive o ArrayList. */
-public class Mochila {
+/*      Ideia:
+Mochila unica para todos os personagens, guarda itens que podem ser usados, alem
+do ouro conseguido.*/
+public class Mochila implements Serializable{
     
     private ArrayList<Item> itens=new ArrayList<Item>();
     private int ouro=0;
@@ -21,7 +21,7 @@ public class Mochila {
     }
     
     public void imprime(){
-        System.out.println("Ouro: "+this.getOuro());
+        System.out.println("\n - Mochila -\nOuro: "+this.getOuro());
         if(itens.isEmpty())System.out.println("Vazio");
         for(int i=0;i<itens.size();i++)System.out.println((i+1)+". "+itens.get(i).getNome()+" X "+itens.get(i).getQuantidade());
         System.out.println();
@@ -44,6 +44,11 @@ public class Mochila {
             if(itens.get(i).getNome()==nome)return i;
         }
         return -1;
+    }
+    
+    public Item getItem(int index){
+        if(index>=itens.size() | index<0)return null;
+        return itens.get(index);
     }
     
     public int getOuro() {return ouro;}

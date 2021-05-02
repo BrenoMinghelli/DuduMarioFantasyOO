@@ -1,10 +1,12 @@
 package game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-/*
- */
-public abstract class Item {
+/*      Ideia:
+Os itens sao objetos finitos, e devem ser removidos da mochila caso usados.
+Itens implementam o seu efeito e guardam a quantidade disponivel. */
+public abstract class Item implements Serializable{
     
     private int quantidade=1;
     private int valor;

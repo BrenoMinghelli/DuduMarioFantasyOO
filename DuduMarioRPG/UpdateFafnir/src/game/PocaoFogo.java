@@ -1,10 +1,11 @@
 package game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-/*
- */
-public class PocaoFogo extends Item{
+/*      Ideia:
+Um item que causa dano aos inimigos. */
+public class PocaoFogo extends Item implements Serializable{
     
     public PocaoFogo(){
         this.setNome("Pocao de Fogo");

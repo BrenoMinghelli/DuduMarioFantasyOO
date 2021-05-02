@@ -3,16 +3,16 @@ package game;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*      Comentarios:
-    Corrigido bug de dano em Area, agora os inimigos sao removidos do array do
-ultimo ao primeiro, o que deve evitar IndexOutOfBounds.
-ToDo: tentar implementar o scanner fora de combate como pedido pela professora.*/
+/*      Ideia:
+Juntar as mecanicas e metodos de todas as classes e criar um padrao de combates
+a ser seguido. ToDo: separar os turnos dos personagens e inimigos em metodos
+e deixar o metodo lutar mais customizavel para as subclasses.*/
 abstract class Combate {
 Scanner teclado = new Scanner(System.in);
     
     ArrayList<Inimigo> inimigos= new ArrayList<Inimigo>();
-    
-    
+    String nomeI;
+    int xp;
     public Combate(){};//SUBCLASSES : adicionar os inimigos no construtor
     
     public void lutar(ArrayList<Personagem> personagens, Mochila mochila){
@@ -60,7 +60,14 @@ Scanner teclado = new Scanner(System.in);
                 System.out.println("Vez do "+inimigoTemp.getNome()+"\n");
                 
                 if(((Guerreiro)personagens.get(0)).isTaunting() & ((Guerreiro)personagens.get(0)).taMorto()==false)inimigoTemp.atacar(personagens.get(0));//mecanica Taunt do Guerreiro
-                else inimigoTemp.atacar(personagens); //random, porem tem que checar personagens.isDead para funcionar
+                else {//cria um array com todas as opcoes de alvos vivos, random escolhe um numero nesse array. Garantida escolha de alvo vivo
+                    ArrayList<Integer> targets=new ArrayList<Integer>();
+                    for(int i=0; i<personagens.size();i++){
+                        if(personagens.get(i).taMorto()==false)targets.add(i);
+                    }
+                    inimigoTemp.atacar(personagens.get(targets.get(RandomRoll.danoroll(targets.size()))));
+                    targets.clear();
+                }
                 
                 for(int i=0; i<personagens.size();i++){//checa quantos personagens estao mortos
                     if(personagens.get(i).taMorto()){
@@ -82,7 +89,10 @@ Scanner teclado = new Scanner(System.in);
         ((WhiteMage)personagens.get(2)).fimHeroism(personagens);//reseta mecanica Heroism do WhiteMage
         
         if (saida>=0){
-            System.out.print("Os personagens derrotaram os slimes!\n");
+            System.out.print("Os personagens derrotaram "+nomeI+"!\nReceberam "+xp+" de experiencia!\n");
+            for(int i=0;i<4;i++) {
+            	personagens.get(i).ganhaXp(xp);
+            }
         }else if(saida<0){
             System.out.print("Os personagens foram derrotados!\n");
         }

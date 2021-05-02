@@ -1,10 +1,11 @@
 package game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*      Ideia:
 O personagem gasta seu turno bebendo a pocao e recupera 20 HP*/
-public class PocaoCura extends Item{
+public class PocaoCura extends Item implements Serializable{
     
     public PocaoCura(){
         this.setNome("Pocao de Cura");

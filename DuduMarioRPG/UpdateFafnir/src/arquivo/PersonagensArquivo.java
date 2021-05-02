@@ -11,16 +11,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import game.Personagem;
 
-/*      Comentarios
-    A sintaxe "\\" funciona apenas em Windows, caso use Mac/Linux é necessário
-usar a sintaxe System.getProperty("file.separator").
-    Caso o caminho de algum erro, tente printar: System.out.println(System.getProperty("java.class.path"));
-esse é o caminho que a função de leitura está seguindo no seu computador, 
-a partir dali, encontre a pasta arquivo. Nao eh necessario usar C:\\Users\\...*/
+/*      Ideia:
+Salva os personagens em um arquivo binario. Eh chamado no inicio e no fim da
+execucao para carregar e salvar o estado dos personagens. Funciona como um
+CheckPoint ou SaveGame.*/
 public class PersonagensArquivo {
     
-    // public static String caminho=System.getProperty("java.class.path")+System.getProperty("file.separator")+"arquivo"+System.getProperty("file.separator")+"Save.txt"; //versao Linux/Mac
-    public static String caminho=System.getProperty("java.class.path")+"\\arquivo\\Save.txt";
+    public static String caminho=System.getProperty("java.class.path")+System.getProperty("file.separator")+"arquivo"+System.getProperty("file.separator")+"Save.txt";
     
     public static Personagem carregaPersonagem(int index) throws GameException{
         
@@ -32,8 +29,7 @@ public class PersonagensArquivo {
             for(int i=0;i<=index;i++){
                 ObjectInputStream lerInput = new ObjectInputStream(input);
                 retorno =((Personagem)lerInput.readObject());
-            }
-            input.close();
+            }input.close();
             return retorno;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PersonagensArquivo.class.getName()).log(Level.SEVERE, null, ex);

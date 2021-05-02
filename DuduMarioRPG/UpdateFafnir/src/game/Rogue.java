@@ -14,6 +14,7 @@ public class Rogue extends Personagem{
     public Rogue(String nome, int level){
         super(nome,1,15,7,5);
         for(int i=1;i<level;i++)this.levelUp();
+        if(level>1)this.setXp(NivelXp.xpParaProxNivel(level-1));
     }
     
     @Override
@@ -99,7 +100,7 @@ public class Rogue extends Personagem{
     }
     
         @Override
-    public void showActions(){  //mostra as açoes possiveis ao jogador
+    public void showActions(){  //mostra as acoes possiveis ao jogador
     	System.out.println("Turno do "+this.getNome()+"  "+this.getHpA()+"/"+this.getHp());
         System.out.println("0.Mochila\n1.Ataque basico");
         if(getLvl()>=2){
@@ -113,3 +114,4 @@ public class Rogue extends Personagem{
         }
     }
 }
+

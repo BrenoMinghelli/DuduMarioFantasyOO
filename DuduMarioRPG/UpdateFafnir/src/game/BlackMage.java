@@ -18,6 +18,7 @@ public class BlackMage extends Personagem implements Mago{
     public BlackMage(String nome, int level){
         super(nome,1,15,5,5);
         for(int i=1;i<level;i++)this.levelUp();
+        if(level>1)this.setXp(NivelXp.xpParaProxNivel(level-1));
     }
     
     @Override

@@ -3,8 +3,7 @@ package game;
 import java.util.ArrayList;
 
 /*      Comentario:
-    Correcao de bug em heroismStacks, caso o personagem fosse iniciado em lvl>1
-o array nao era iniciado corretamente.*/
+    Atencao a mecanica Heroism*/
 public class WhiteMage extends Personagem implements Mago{
 	
 	private static final long serialVersionUID = 1L;
@@ -23,6 +22,7 @@ public class WhiteMage extends Personagem implements Mago{
         super(nome,1,17,5,5);
         for(int i=0;i<4;i++)this.heroismStacks.add(0);
         for(int i=1;i<level;i++)this.levelUp();
+        if(level>1)this.setXp(NivelXp.xpParaProxNivel(level-1));
     }
     
     @Override
@@ -134,7 +134,7 @@ public class WhiteMage extends Personagem implements Mago{
     }
     
         @Override
-    public void showActions(){  //mostra as a��es possiveis ao jogador
+    public void showActions(){  //mostra as acoes possiveis ao jogador
     	System.out.println("Turno do "+this.getNome()+"  "+this.getHpA()+"/"+this.getHp());
         System.out.println("0.Mochila\n1.Ataque basico");
         if(getLvl()>=2){
