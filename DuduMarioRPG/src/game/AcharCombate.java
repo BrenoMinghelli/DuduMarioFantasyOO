@@ -19,7 +19,7 @@ public class AcharCombate {
 				combate.lutar(personagens, mochila);
 			}
 		}
-		if(l>5 && l<10) {
+		if(l=>5 && l<=10) {
 			if(r<=35) {
 				CombateLagartoMago combate = new CombateLagartoMago();
 				System.out.println("Combate contra 2 Lizard Wizards encontrado!");
